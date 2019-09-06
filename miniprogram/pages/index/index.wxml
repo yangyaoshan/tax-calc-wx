@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<view class="container">
+
+  <!-- 用户 openid -->
+  <!-- <view class="userinfo">
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    ></button>
+    <view>
+      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+    </view>
+  </view> -->
+
+
+  <!-- 上传图片 -->
+  <!-- <view class="uploader">
+    <view class="uploader-text" bindtap="doUpload">
+      <text>上传图片</text>
+    </view>
+    <view class="uploader-container" wx:if="{{imgUrl}}">
+      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+  </view> -->
+
+
+  <!-- 操作数据库 -->
+  <!-- <view class="uploader">
+    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
+      <text>前端操作数据库</text>
+    </navigator>
+  </view> -->
+
+  <!-- 新建云函数 -->
+  <!-- <view class="uploader">
+    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
+      <text>快速新建云函数</text>
+    </navigator>
+  </view> -->
+  <view class="header">
+    <text class="title">税收计算助手</text>
+  </view>
+  <view class="body">
+    <view class="input-group">
+      <text decode class="label">月&nbsp;&nbsp;&nbsp;&nbsp;薪: </text><input type="digit" placeholder="请输入月薪" value="{{monthlySalary}}" bindinput="inputMValue" auto-focus />
+    </view>
+    <view class="input-group">
+      <text class="label">年终奖: </text><input type="digit" placeholder="请输入年终奖" value="{{yearEndAwards}}" bindinput="inputYValue" auto-focus />
+    </view>
+    <button
+      type="primary"
+      size="default"
+      bindtap="calc"
+    >
+      计算
+    </button>
+  </view>
+  <view>
+    <view class="result">
+    <!-- <text>{{result.bestAwads.maxIncome - result.best_yTaxes}} {{yearEndAwards}} {{result.yTaxes}}</text> -->
+      <text wx:if="{{result.afterTaxesIncome}}">您今年税后收入为{{result.afterTaxesIncome}}元，今年需要缴纳税收{{result.totalTaxes}}元，其中月薪扣除的个人所得税为{{result.mTaxes}}元，年终奖扣除的个人所得税为{{result.yTaxes}}元。</text>
+      <text class='suggest' wx:if="{{result.wrongIndex}}">请注意，您的年终奖的数额并不是最佳方案，出现了多发少拿的情况，您的税后年终奖比发{{result.bestAwads.maxIncome}}元还多扣了{{result.undercharged}}元的税款，可以酌情和公司协商。</text>
+    </view>
+  </view>
+</view>
